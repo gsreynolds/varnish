@@ -12,6 +12,8 @@ provisioner:
       compile_time_update: true
 
 platforms:
+- name: debian-7.8
+- name: debian-8.0
 - name: ubuntu-14.04
 - name: ubuntu-12.04
 <% if ENV['CI'] %>
@@ -47,6 +49,8 @@ suites:
 
 - name: distro_libraries
   includes:
+    - debian-7.8
+    - debian-8.0
     - ubuntu-14.04
     - centos-7.0
     - centos-6.6
@@ -54,6 +58,8 @@ suites:
     - recipe[install_varnish::distro_install]
 - name: vendor_libraries
   includes:
+    - debian-7.8
+    - debian-8.0
     - ubuntu-14.04
     - centos-7.0
     - centos-6.6
@@ -62,6 +68,8 @@ suites:
 
 - name: libraries_defaults
   includes:
+    - debian-7.8
+    - debian-8.0
     - ubuntu-14.04
     - centos-7.0
     - centos-6.6
