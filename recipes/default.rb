@@ -17,36 +17,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-include_recipe 'varnish::repo' if node['varnish']['use_default_repo']
-
-package 'varnish'
-
-template node['varnish']['default'] do
-  source node['varnish']['conf_source']
-  cookbook node['varnish']['conf_cookbook']
-  owner 'root'
-  group 'root'
-  mode 0644
-  notifies 'restart', 'service[varnish]', :delayed
-end
-
-template "#{node['varnish']['dir']}/#{node['varnish']['vcl_conf']}" do
-  source node['varnish']['vcl_source']
-  cookbook node['varnish']['vcl_cookbook']
-  owner 'root'
-  group 'root'
-  mode 0644
-  notifies :reload, 'service[varnish]', :delayed
-  only_if { node['varnish']['vcl_generated'] == true }
-end
-
-service 'varnish' do
-  supports restart: true, reload: true
-  action %w(enable)
-end
-
-service 'varnishlog' do
-  supports restart: true, reload: true
-  action node['varnish']['log_daemon'] ? %w(enable start) : %w(disable stop)
-end
