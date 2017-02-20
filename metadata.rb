@@ -15,8 +15,8 @@ recipe 'varnish::repo', 'Adds the official varnish project repository'
   supports os
 end
 
-depends 'apt', '>= 2.4', '< 4.1'
+depends 'apt', '>= 2.4', '< 6.0'
 depends 'build-essential'
 depends 'chef-sugar'
-depends 'yum', '>= 3.0', '< 4.1'
+depends 'yum', '>= 3.0', '< 6.0'
 depends 'yum-epel'
