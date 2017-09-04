@@ -1,29 +1,31 @@
-[![Circle CI](https://circleci.com/gh/rackspace-cookbooks/varnish.svg?style=svg)](https://circleci.com/gh/rackspace-cookbooks/varnish)
+# varnish Cookbook
 
-varnish Cookbook
-================
+[![Build Status](https://travis-ci.org/sous-chefs/varnish.svg?branch=master)](https://travis-ci.org/sous-chefs/varnish)  
+[![Cookbook Version](https://img.shields.io/cookbook/v/varnish.svg)](https://supermarket.chef.io/cookbooks/varnish)
+
 Configures varnish.
 
+## Requirements
 
-Requirements
-------------
 ### chef-client
+
 * Requires chef-client 12.5 and above.
+* If you are using chef-client <12.9 and the `debian` platform family you will need to pin to the 5.X release of the `apt` cookbook.
 
 ### Platforms
 
-Tested on:
+Tested on the platforms below with distro installs and upstream Varnish packaging versions 3, 4.0, and 4.1 unless otherwise noted.
 
-* Ubuntu 12.04
+
 * Ubuntu 14.04
-* Centos 6.8
-* Centos 7.2
+* Ubuntu 16.04
+  * Tested with Ubuntu's 16.04 distribution (version 4.1).
+* CentOS 6.8
+  * Tested with 3, 4.0, and 4.1 (distro version is 2.0 which is not supported) 
+* CentOS 7.3
+  * Tested with 4.0 and 4.1 and CentOS 7 distrubution
 
-With varnish versions:
-
-* 3
-* 4
-* 4.1
+Other versions may work but require pinning to the correct version which isn't included in this cookbook currently.
 
 Global Attributes
 -----------------
@@ -137,11 +139,11 @@ files that come with your distro package will be used instead.
 | `max_open_files` | integer | `131_072` |
 | `max_locked_memory` | integer | `82_000` |
 | `major_version` | `3.0`, `4.0`, or `4.1` | `node['varnish']['major_version']` | major_version attribute defaults to 4.1
-| `instance_name` | string | `node['hostname']` | Currently not used on non-debian initd systems
+| `instance_name` | string | `` `hostname` ``]` |
 | `listen_address` | string | `nil` |
 | `listen_port` | integer | `6081` |
 | `admin_listen_address` | string | `'127.0.0.1'` |
-| `admin_plisten_port` | integer | `6082` |
+| `admin_listen_port` | integer | `6082` |
 | `user` | string | `'varnish'` |
 | `group` | string | `'varnish'` | Only used on varnish versions before 4.1
 | `ccgroup` | string | `nil` | Only used on varnish 4.1

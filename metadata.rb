@@ -1,9 +1,9 @@
 name 'varnish'
 maintainer 'Sous Chefs'
 maintainer_email 'help@sous-chefs.org'
-license 'Apache 2.0'
+license 'Apache-2.0'
 description 'Installs and configures varnish'
-version '3.0.1'
+version '3.2.0'
 source_url 'https://github.com/sous-chefs/varnish'
 issues_url 'https://github.com/sous-chefs/varnish/issues'
 chef_version '>= 12.5' if respond_to?(:chef_version)
@@ -15,7 +15,7 @@ recipe 'varnish::repo', 'Adds the official varnish project repository'
   supports os
 end
 
-depends 'apt', '>= 2.4', '< 6.0'
+depends 'apt', '>= 2.4'
 depends 'build-essential'
 depends 'chef-sugar'
 depends 'yum', '>= 3.0', '< 6.0'

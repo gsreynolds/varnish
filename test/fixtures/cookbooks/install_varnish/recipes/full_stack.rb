@@ -1,5 +1,10 @@
 include_recipe 'apt'
+include_recipe 'yum'
+include_recipe 'yum-epel'
 include_recipe 'varnish::default'
+
+# Set up nginx first since it likes to start listening on port 80 during install
+include_recipe "#{cookbook_name}::_nginx"
 
 package 'varnish'
 
@@ -23,6 +28,3 @@ vcl_template 'default.vcl' do
     }
   )
 end
-
-include_recipe "#{cookbook_name}::_nginx"
-
